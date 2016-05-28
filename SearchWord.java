@@ -22,7 +22,6 @@ public class SearchWord{
 	for(int i = 0; i < 16; i++){
 	    sa = sa + a[i];
 	}
-	System.out.println(sa);
 
 	try {
 	    BufferedReader br = new BufferedReader(new FileReader("/usr/share/dict/words"));
@@ -42,11 +41,6 @@ public class SearchWord{
 	    e.printStackTrace();
 	}
 
-	//辞書を格納したリストの中身の確認
-	/*for(int i = 0; i < array.size()-1; i++){
-	  String country = array.get(i);
-	  System.out.println(country);
-	  }*/
 
 	//リストの中身をアルファベット順にソートしたリスト
 	ArrayList<String> sortArray = new ArrayList<String>();
@@ -74,11 +68,6 @@ public class SearchWord{
 	    
 	}
 
-	//辞書を格納したリストの中身の確認
-	/*for(int h = 0; h < sortArray.size()-1; h++){
-	  String country = sortArray.get(h);
-	  System.out.println(country);
-	  }*/
 
 	//sortArrayリストのなかの単語とsa(ソート後の入力された文字)の一部と
 	//一致するか調べる
@@ -90,16 +79,24 @@ public class SearchWord{
 	    String x = array.get(r);
 	    //もし一部一致したらもとのリストのr番目の文字列を保存
 	    if(sa.startsWith(w)){
-		System.out.println("match!");
 		answerArray.add(x);
 	    }
 	    
 	}
-	//答えの候補の中身を表示
+	//答えの候補の中から答えを表示
+	String answer = "";
 	for(int ii = 0; ii < answerArray.size(); ii++){
 	    String f = answerArray.get(ii);
-	    System.out.println(answerArray.get(ii));
+	    if(f.length() > answer.length()){
+		answer = f;
+	    }
 	}
+	if(answer == ""){
+	    System.out.println("作れる単語は存在しない");
+	}else{
+	    System.out.println("一番長い単語は「" + answer +"」");
+	}
+	
 	
 	
 
