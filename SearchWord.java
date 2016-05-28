@@ -44,10 +44,43 @@ public class SearchWord{
 	}
 
 	//辞書を格納したリストの中身の確認
-	for(int i = 0; i < array.size()-1; i++){
+	/*for(int i = 0; i < array.size()-1; i++){
 	    String country = array.get(i);
 	    System.out.println(country);
+	    }*/
+
+	//リストの中身をアルファベット順にソートしたリスト
+	ArrayList<String> sortArray = new ArrayList<String>();
+	//String b = "";
+	int l = 0;
+	for(int i = 0; i < array.size()-1; i++){
+
+	    //listの中身の文字列を取り出す
+	    String word = array.get(i);
+	    //取り出した単語の大きさ
+	    l = word.length();
+	    String[] wordArray = new String[l];
+	    for (int p = 0; p < l; p++) {
+		//lineの先頭から1文字ずつString型にして取り出す
+		String m = String.valueOf(word.charAt(p));
+		//配列に順番に格納する
+		wordArray[p] = m;
+	    }
+	    sort(wordArray);
+	    String sb = "";
+	    for(int q = 0; q < l; q++){
+		sb = sb + wordArray[q];
+	    }
+	    sortArray.add(sb);
+	    
 	}
+
+	//辞書を格納したリストの中身の確認
+	for(int h = 0; h < sortArray.size()-1; h++){
+	    String country = sortArray.get(h);
+	    System.out.println(country);
+	}
+	
 	
 
     }
