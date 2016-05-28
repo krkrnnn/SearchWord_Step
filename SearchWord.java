@@ -27,14 +27,13 @@ public class SearchWord{
 	try {
 	    BufferedReader br = new BufferedReader(new FileReader("/usr/share/dict/words"));
 	    try {
-	    while (true) {
+		while (true) {
 		    String line = br.readLine();
 		    //listに辞書の単語を追加
 		    array.add(line);
-            if (line == null) {
-                break;
-            }
-	    //System.out.println(line.toUpperCase());
+		    if (line == null) {
+			break;
+		    }
 		}
 	    } finally {
 		br.close();
@@ -45,9 +44,9 @@ public class SearchWord{
 
 	//辞書を格納したリストの中身の確認
 	/*for(int i = 0; i < array.size()-1; i++){
-	    String country = array.get(i);
-	    System.out.println(country);
-	    }*/
+	  String country = array.get(i);
+	  System.out.println(country);
+	  }*/
 
 	//リストの中身をアルファベット順にソートしたリスト
 	ArrayList<String> sortArray = new ArrayList<String>();
@@ -76,17 +75,38 @@ public class SearchWord{
 	}
 
 	//辞書を格納したリストの中身の確認
-	for(int h = 0; h < sortArray.size()-1; h++){
-	    String country = sortArray.get(h);
-	    System.out.println(country);
+	/*for(int h = 0; h < sortArray.size()-1; h++){
+	  String country = sortArray.get(h);
+	  System.out.println(country);
+	  }*/
+
+	//sortArrayリストのなかの単語とsa(ソート後の入力された文字)の一部と
+	//一致するか調べる
+
+	//正解の候補の単語を保存するArrayList
+	ArrayList<String> answerArray = new ArrayList<String>();
+	for(int r = 0; r < sortArray.size()-1; r++){
+	    String w = sortArray.get(r);
+	    String x = array.get(r);
+	    //もし一部一致したらもとのリストのr番目の文字列を保存
+	    if(sa.startsWith(w)){
+		System.out.println("match!");
+		answerArray.add(x);
+	    }
+	    
+	}
+	//答えの候補の中身を表示
+	for(int ii = 0; ii < answerArray.size(); ii++){
+	    String f = answerArray.get(ii);
+	    System.out.println(answerArray.get(ii));
 	}
 	
 	
 
     }
 
-    //与えられた配列(文字列)を辞書式にソートするクラス
- public static void sort(String[] a){
+    //与えられた配列(文字列)を辞書式にソートするメソッド
+    public static void sort(String[] a){
 	String tmp = "";
 	for(int i = 0; i < a.length - 1; i++){
 	    for(int j = a.length - 1; j > i; j--){
