@@ -1,27 +1,57 @@
 import java.util.*;
+import java.io.*;
 
 public class SearchWord{
     public static void main(String[] args){
+
+	List<String> array = new ArrayList<String>();
+	array.add("a");
+	array.add("x");
+	array.add("1");
+	array.add("b");
+	array.add("3");
+	Collections.sort(array);
+	for (String string : array) {
+	    System.out.println(string);
+	}
+
+	try {
+	    BufferedReader br = new BufferedReader(new FileReader("/usr/share/dict/words"));
+	    try {
+		while (true) {
+		    String line = br.readLine();
+            if (line == null) {
+                break;
+            }
+            Collections.sort(line);
+	    System.out.println(line.toUpperCase());
+		}
+	    } finally {
+		br.close();
+	    }
+	} catch (IOException e) {
+	    e.printStackTrace();
+	}
+	
 	Scanner sc = new Scanner(System.in);
 	System.out.println("16文字のアルファベットを入力してください");
 	//入力された文字を配列に追加する
 	String a[] = new String[16];
-	//ソート後を保存する文字列
-	//String b[] = new Stirng[16];
+
 	for(int i = 0; i < 16; i++){
 	    String n = sc.next();
 	    a[i] = n;
-	    System.out.println(a[i]);
 	}
 	//入力された文字列の配列を辞書順にソートする
 	sort(a);
-
-	//ソート後の中身を確認
-	System.out.println("ソート後の中身は");
+	//ソートした中身をStringにいれる
+	String sa = "";
 	for(int i = 0; i < 16; i++){
-	    System.out.println(a[i]);
+	    sa = sa + a[i];
 	}
-	
+	System.out.println(sa);
+
+
 	
     }
 
