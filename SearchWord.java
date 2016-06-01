@@ -74,14 +74,25 @@ public class SearchWord{
 
 	//正解の候補の単語を保存するArrayList
 	ArrayList<String> answerArray = new ArrayList<String>();
-	for(int r = 0; r < sortArray.size()-1; r++){
+	for(int r = 0; r < sortArray.size(); r++){
 	    String w = sortArray.get(r);
 	    String x = array.get(r);
-	    //もし一部一致したらもとのリストのr番目の文字列を保存
-	    if(sa.startsWith(w)){
-		answerArray.add(x);
+	    int count = 0;//一致している文字数を保存
+	    int cindex = 0;//wのi一つ前の文字で一致したsaの隣の場所を保存
+	    if(w.length() <= sa.length()){
+		for(int i = 0; i < w.length(); i++){
+		    for(int j = cindex; j < 16; j++){
+			if(w.charAt(i) == sa.charAt(j)){
+			    count = count + 1;
+			    cindex = j + 1;
+			    break;
+			}
+		    }    
+		}
+		if(count == w.length()){
+		    answerArray.add(x);	    
+		}
 	    }
-	    
 	}
 	//答えの候補の中から答えを表示
 	String answer = "";
@@ -89,6 +100,7 @@ public class SearchWord{
 	    String f = answerArray.get(ii);
 	    if(f.length() > answer.length()){
 		answer = f;
+		System.out.println(answer);
 	    }
 	}
 	if(answer == ""){
