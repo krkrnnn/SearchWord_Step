@@ -44,7 +44,6 @@ public class SearchWord{
 
 	//リストの中身をアルファベット順にソートしたリスト
 	ArrayList<String> sortArray = new ArrayList<String>();
-	//String b = "";
 	int l = 0;
 	for(int i = 0; i < array.size()-1; i++){
 
@@ -74,6 +73,8 @@ public class SearchWord{
 
 	//正解の候補の単語を保存するArrayList
 	ArrayList<String> answerArray = new ArrayList<String>();
+
+	//System.out.println(sa);
 	for(int r = 0; r < sortArray.size(); r++){
 	    String w = sortArray.get(r);
 	    String x = array.get(r);
@@ -100,7 +101,7 @@ public class SearchWord{
 	    String f = answerArray.get(ii);
 	    if(f.length() > answer.length()){
 		answer = f;
-		System.out.println(answer);
+		//System.out.println(answer);
 	    }
 	}
 	if(answer == ""){
